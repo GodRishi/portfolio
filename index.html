@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Favicon Link -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- SEO Metadata -->
+    <title>Rishi Saha | Web Developer for Brands & Businesses</title>
+    <meta name="description" content="I build fast, beautiful, and simple websites for businesses and brands. Powered by high-quality coding and smart AI tools." />
+    <meta name="author" content="Rishi Saha" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@700;800&family=Syne:wght@800&display=swap" rel="stylesheet">
+    
+    <!-- Styling -->
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Full-Screen Interactive Canvas Background (Python Codestream) -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- Overlay Cursor -->
+    <div id="custom-cursor"></div>
+
+    <!-- Main Container -->
+    <div class="site-container">
+      
+      <!-- Top Brutalist Header -->
+      <header class="main-header">
+        <div class="header-logo">
+          <span class="logo-bold">RISHI SAHA</span>
+          <span class="logo-tag">// PROFESSIONAL WEB DEVELOPER</span>
+        </div>
+        <div class="header-controls">
+          <!-- Country / Currency Selector -->
+          <div class="country-selector" id="country-selector">
+            <button class="country-btn" id="country-btn" aria-haspopup="listbox" aria-expanded="false">
+              <span id="country-flag">🇮🇳</span>
+              <span id="country-label">India (₹)</span>
+              <span class="country-chevron">▾</span>
+            </button>
+            <ul class="country-dropdown" id="country-dropdown" role="listbox">
+              <li data-code="IN"  data-flag="🇮🇳" data-label="India (₹)">🇮🇳 India</li>
+              <li data-code="US"  data-flag="🇺🇸" data-label="USA ($)">🇺🇸 USA</li>
+              <li data-code="GB"  data-flag="🇬🇧" data-label="UK (£)">🇬🇧 United Kingdom</li>
+              <li data-code="EU"  data-flag="🇪🇺" data-label="Europe (€)">🇪🇺 Europe</li>
+              <li data-code="AU"  data-flag="🇦🇺" data-label="Australia (A$)">🇦🇺 Australia</li>
+              <li data-code="CA"  data-flag="🇨🇦" data-label="Canada (C$)">🇨🇦 Canada</li>
+              <li data-code="AE"  data-flag="🇦🇪" data-label="UAE (AED)">🇦🇪 UAE</li>
+              <li data-code="SG"  data-flag="🇸🇬" data-label="Singapore (S$)">🇸🇬 Singapore</li>
+            </ul>
+          </div>
+          <!-- Brutalist Theme Toggle Switch -->
+          <button id="theme-toggle" aria-label="Toggle Brutalist Theme" class="btn-toggle">
+            <span class="toggle-text-dark">OBSIDIAN DARK</span>
+            <span class="toggle-text-light">BLINDING LIGHT</span>
+            <div class="toggle-indicator"></div>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Layout Grid -->
+      <main class="grid-layout">
+        
+        <!-- Hero Section -->
+        <section id="hero-section" class="grid-card hero-card">
+          <div class="card-badge">WHAT I DO</div>
+          <h1 class="hero-title">I BUILD FAST, BEAUTIFUL WEBSITES FOR YOUR BUSINESS.</h1>
+          <p class="hero-subtitle">
+            I write high-quality code and use advanced AI tools to build websites that load instantly, look amazing, and help your business get more customers. No confusing tech jargon. Just clean work that helps you grow.
+          </p>
+          
+          <!-- Simplified Tech Capsules -->
+          <div class="tech-stack-container">
+            <span class="tech-tag-pill">FAST PAGE LOADING</span>
+            <span class="tech-tag-pill">AI-POWERED DEVELOPER</span>
+            <span class="tech-tag-pill">MOBILE & TABLET READY</span>
+            <span class="tech-tag-pill">E-COMMERCE SHOPS</span>
+            <span class="tech-tag-pill">BOOKING SYSTEMS</span>
+            <span class="tech-tag-pill">EASY TO EDIT</span>
+          </div>
+
+          <!-- Availability badge (Suggestion E) -->
+          <div class="availability-badge">
+            <span class="avail-dot"></span>
+            Currently accepting <strong>2 new clients</strong> — spots fill fast
+          </div>
+
+          <div class="cta-group">
+            <a href="#contact-section" class="btn btn-primary" id="cta-contact">GET A FREE QUOTE</a>
+            <a href="#portfolio-section" class="btn btn-secondary" id="cta-portfolio">SEE MY WORK</a>
+          </div>
+
+          <!-- Starting price hint (Suggestion D) -->
+          <p class="price-hint">Websites starting from <span id="start-price">₹10,000</span> — no hidden fees.</p>
+        </section>
+
+        <!-- Authority & Competence Metrics Grid -->
+        <section id="metrics-section" class="metrics-grid">
+          <div class="grid-card metric-card" data-metric="1">
+            <div class="metric-num">15+</div>
+            <div class="metric-label">WEBSITES DELIVERED</div>
+            <p class="metric-desc">Built for local shops, online brands, and growing businesses.</p>
+          </div>
+          <div class="grid-card metric-card" data-metric="2">
+            <div class="metric-num">30%+</div>
+            <div class="metric-label">average sales boost</div>
+            <p class="metric-desc">My clients see more customer inquiries and store purchases.</p>
+          </div>
+          <div class="grid-card metric-card" data-metric="3">
+            <div class="metric-num">100%</div>
+            <div class="metric-label">Speed score</div>
+            <p class="metric-desc">Websites load in under a second, meaning customers never wait.</p>
+          </div>
+          <div class="grid-card metric-card" data-metric="4">
+            <div class="metric-num">5.0★</div>
+            <div class="metric-label">CLIENT RATING</div>
+            <p class="metric-desc">Perfect feedback from business owners based on 20+ reviews.</p>
+          </div>
+        </section>
+
+        <!-- How It Works Strip (Suggestion A) -->
+        <section id="how-it-works" class="grid-card how-it-works-card">
+          <div class="card-badge">SIMPLE PROCESS</div>
+          <h2 class="section-title">HOW IT WORKS</h2>
+          <div class="steps-grid">
+            <div class="step-item">
+              <div class="step-number">01</div>
+              <div class="step-icon">💬</div>
+              <h3 class="step-title">You Talk, I Listen</h3>
+              <p class="step-desc">Tell me about your business, your goals, and what you want the website to do. No forms to fill in. Just a simple chat — free of charge.</p>
+            </div>
+            <div class="step-divider">→</div>
+            <div class="step-item">
+              <div class="step-number">02</div>
+              <div class="step-icon">⚡</div>
+              <h3 class="step-title">I Build It Fast</h3>
+              <p class="step-desc">I write clean, fast code using advanced AI tools. Most websites are ready within 7–14 days. You review everything and request changes until you love it.</p>
+            </div>
+            <div class="step-divider">→</div>
+            <div class="step-item">
+              <div class="step-number">03</div>
+              <div class="step-icon">🚀</div>
+              <h3 class="step-title">You Launch & Grow</h3>
+              <p class="step-desc">Your website goes live and starts working for your business 24/7. I stay available after launch to fix anything and help you grow further.</p>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- Portfolio Grid Section -->
+        <section id="portfolio-section" class="grid-card portfolio-container-card">
+          <div class="card-badge">MY PROJECTS</div>
+          <h2 class="section-title">WEBSITES THAT WORK</h2>
+          <p class="section-subtitle">Real examples of websites built for real businesses. Move your mouse over cards to highlight background items.</p>
+          
+          <div class="portfolio-grid">
+            <div class="portfolio-item-card" data-project-index="0" id="project-0">
+              <div class="project-header">
+                <span class="project-tag">FINANCE // EASY PRICE TRACKER</span>
+                <span class="project-year">2026</span>
+              </div>
+              <h3 class="project-title">Aether Cap</h3>
+              <p class="project-desc">A live cryptocurrency price tracker. It updates coin values instantly without you needing to reload the webpage, and runs smoothly on even slow home internet connections.</p>
+              <div class="project-metrics">
+                <span><strong>Result:</strong> Users stay 3 times longer on the site</span>
+                <span><strong>Speed:</strong> Loads in under a second</span>
+              </div>
+              <a href="#" class="project-link" target="_blank" rel="noopener">VIEW WEBSITE &rarr;</a>
+            </div>
+
+            <div class="portfolio-item-card" data-project-index="1" id="project-1">
+              <div class="project-header">
+                <span class="project-tag">ONLINE SHOP // CLOTHING BRAND</span>
+                <span class="project-year">2025</span>
+              </div>
+              <h3 class="project-title">Titan Shop</h3>
+              <p class="project-desc">A modern clothing storefront. It was built with custom shop states that remember what is in your cart instantly, and is optimized to load on mobile phones without any delays.</p>
+              <div class="project-metrics">
+                <span><strong>Result:</strong> 18% fewer people left the store without buying</span>
+                <span><strong>Speed:</strong> Perfect mobile score</span>
+              </div>
+              <a href="#" class="project-link" target="_blank" rel="noopener">VIEW WEBSITE &rarr;</a>
+            </div>
+
+            <div class="portfolio-item-card" data-project-index="2" id="project-2">
+              <div class="project-header">
+                <span class="project-tag">MUSIC PLAYER // INTERACTIVE SHAPES</span>
+                <span class="project-year">2025</span>
+              </div>
+              <h3 class="project-title">Volt Audio</h3>
+              <p class="project-desc">A fun music player page. It draws colorful moving waves that dance on the screen in time with the song's beat. It makes listening to tracks online feel like a game.</p>
+              <div class="project-metrics">
+                <span><strong>Result:</strong> 15,000 visitors in the first week</span>
+                <span><strong>Speed:</strong> Zero delay when clicking play</span>
+              </div>
+              <a href="#" class="project-link" target="_blank" rel="noopener">VIEW WEBSITE &rarr;</a>
+            </div>
+
+            <div class="portfolio-item-card" data-project-index="3" id="project-3">
+              <div class="project-header">
+                <span class="project-tag">HEALTHCARE // CLINIC SCHEDULER</span>
+                <span class="project-year">2025</span>
+              </div>
+              <h3 class="project-title">Clinic Scheduler</h3>
+              <p class="project-desc">An online booking calendar for a family doctor's clinic. Patients can choose their doctor, select a time, and book their appointment in 3 simple clicks on their phones.</p>
+              <div class="project-metrics">
+                <span><strong>Result:</strong> Saved clinic staff 15 hours of phone calls per week</span>
+                <span><strong>Speed:</strong> Works instantly on all phones</span>
+              </div>
+              <a href="#" class="project-link" target="_blank" rel="noopener">VIEW WEBSITE &rarr;</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Testimonials & Client Ratings Section (Replaces off-topic Ebook section) -->
+        <section id="ratings-section" class="grid-card ratings-container-card">
+          <div class="card-badge">CLIENT REVIEWS</div>
+          <h2 class="section-title">WHAT BUSINESS OWNERS SAY</h2>
+          <p class="section-subtitle">Real feedback from clients who wanted simple, fast, and high-performing websites.</p>
+          
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="stars-row">★★★★★ 5.0 RATING</div>
+              <p class="testimonial-quote">
+                "Rishi built our online store using advanced AI helpers. It cost us half of what other developers quoted, took half the time, and loads in less than a second. Our sales went up by 30% in the first month!"
+              </p>
+              <div class="testimonial-author">
+                <strong>Marcus T.</strong>
+                <span>Founder, Retail Brand</span>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="stars-row">★★★★★ 5.0 RATING</div>
+              <p class="testimonial-quote">
+                "No confusing developer talk. Rishi was friendly, explained everything in plain English, and built a patient booking calendar that saved us hours of phone work. Our patients love using it."
+              </p>
+              <div class="testimonial-author">
+                <strong>Dr. Helen R.</strong>
+                <span>Director, Medical Center</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Direct Email Pipeline (Contact Section) -->
+        <section id="contact-section" class="grid-card contact-card">
+          <div class="card-badge">GET IN TOUCH</div>
+          <h2 class="section-title">LET'S BUILD YOUR WEBSITE</h2>
+          <p class="section-subtitle">Send details about your business and your website goals directly to Rishi Saha.</p>
+          
+          <form id="lead-pipeline-form" class="brutalist-form">
+            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" id="web3forms-key">
+            <input type="hidden" name="subject" value="NEW WEBSITE INQUIRY: RISHI SAHA PORTFOLIO">
+            <input type="hidden" name="from_name" value="Business Lead Capture">
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="lead-name">YOUR NAME / BUSINESS NAME</label>
+                <input type="text" id="lead-name" name="name" placeholder="e.g. John Doe" required />
+              </div>
+              <div class="form-group">
+                <label for="lead-email">YOUR EMAIL ADDRESS</label>
+                <input type="email" id="lead-email" name="email" placeholder="e.g. name@company.com" required />
+              </div>
+              <div class="form-group col-span-2">
+                <label for="lead-project">PROJECT BUDGET</label>
+                <select id="lead-project" name="budget" required>
+                  <option value="" disabled selected>Select your budget tier...</option>
+                  <option id="budget-t1" value="tier1">₹10,000 – ₹25,000 (Standard Website)</option>
+                  <option id="budget-t2" value="tier2">₹25,000 – ₹50,000 (Interactive / 3D Site)</option>
+                </select>
+              </div>
+              <div class="form-group col-span-2">
+                <label for="lead-message">WHAT DO YOU NEED BUILT?</label>
+                <textarea id="lead-message" name="message" rows="4" placeholder="Tell me about your business and what kind of website you want to build." required></textarea>
+              </div>
+            </div>
+
+            <!-- Anti-spam honeypot -->
+            <input type="checkbox" name="botcheck" class="hidden-field" style="display: none;">
+
+            <div class="form-footer">
+              <button type="submit" id="submit-lead-btn" class="btn btn-primary btn-submit">
+                SEND MESSAGE
+              </button>
+              <div class="direct-email-fallback">
+                <span>OR EMAIL DIRECTLY:</span>
+                <a href="mailto:saharishi409@gmail.com" class="fallback-mail-link">saharishi409@gmail.com</a>
+              </div>
+            </div>
+          </form>
+
+          <!-- Form Status Overlays -->
+          <div id="form-success-overlay" class="form-overlay hidden">
+            <div class="overlay-content">
+              <div class="success-badge">MESSAGE SECURED</div>
+              <h3>TRANSMISSION SUCCESSFUL</h3>
+              <p>Your details were routed securely. Rishi Saha will review your details and get back to you within 12 hours.</p>
+              <button id="reset-form-btn" class="btn btn-secondary">SEND ANOTHER MESSAGE</button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Footer Grid -->
+      <footer class="main-footer">
+        <div class="footer-block">
+          <p>&copy; 2026 RISHI SAHA. ALL RIGHTS RESERVED.</p>
+          <p>ENGINEERED FOR ABSOLUTE PERFORMANCE.</p>
+        </div>
+        <div class="footer-block font-mono">
+          <p>LATENCY: <span id="ping-metric">-- ms</span></p>
+          <p>COORDINATES: <span id="coords-metric">0.000, 0.000</span></p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
