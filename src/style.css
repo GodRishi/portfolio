@@ -507,14 +507,13 @@ html.light .toggle-text-dark { display: none; }
 }
 
 .steps-grid {
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
   margin-top: 2rem;
 }
 
 .step-item {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -529,18 +528,6 @@ html.light .toggle-text-dark { display: none; }
   border-color: var(--accent-color);
   transform: translate(-2px, -2px);
   box-shadow: 4px 4px 0px var(--shadow-color);
-}
-
-.step-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: var(--accent-color);
-  padding: 0 0.75rem;
-  flex-shrink: 0;
-  font-weight: bold;
-  margin-top: 3rem;
 }
 
 .step-number {
@@ -1021,6 +1008,9 @@ html.light .toggle-text-dark { display: none; }
   .how-it-works-card {
     grid-column: span 12;
   }
+  .steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -1028,15 +1018,8 @@ html.light .toggle-text-dark { display: none; }
     padding: 1rem 0.75rem;
   }
   
-  /* Steps grid stacks vertically on mobile */
   .steps-grid {
-    flex-direction: column;
-  }
-
-  .step-divider {
-    transform: rotate(90deg);
-    margin: 0;
-    padding: 0.25rem;
+    grid-template-columns: 1fr;
   }
 
   /* Hide country label text on very small headers */
