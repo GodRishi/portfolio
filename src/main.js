@@ -209,41 +209,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const formData = new FormData(leadForm);
       const payload  = Object.fromEntries(formData.entries());
-
-      const isDemo = payload.access_key === 'YOUR_ACCESS_KEY_HERE' || !payload.access_key;
-
-      if (isDemo) {
-        console.warn('DEMO MODE: Configure Web3Forms access_key in index.html for live email routing.');
-        setTimeout(() => {
-          if (formOverlay) formOverlay.classList.remove('hidden');
-          leadForm.reset();
-          submitBtn.textContent = originalText;
-          submitBtn.disabled    = false;
-        }, 900);
-        return;
-      }
-
       try {
-        const res  = await fetch('https://api.web3forms.com/submit', {
+        const res  = await fetch('https://formsubmit.co/ajax/saharishi409@gmail.com', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
           body: JSON.stringify(payload),
         });
         const json = await res.json();
 
-        if (res.ok && json.success) {
+        if (res.ok && (json.success === 'true' || json.success === true)) {
           if (formOverlay) formOverlay.classList.remove('hidden');
           leadForm.reset();
         } else {
-          throw new Error(json.message || 'Rejected');
+          throw new Error(json.message || 'API rejected submission');
         }
-      } catch (err) {
-        console.error('Web3Forms failed — launching mailto fallback:', err);
-        const sub  = encodeURIComponent('NEW WEBSITE INQUIRY — Rishi Saha');
-        const body = encodeURIComponent(
-          `Name: ${payload.name}\nEmail: ${payload.email}\nBudget: ${payload.budget}\n\n${payload.message}`
-        );
-        window.location.href = `mailto:saharishi409@gmail.com?subject=${sub}&body=${body}`;
+      } catch (error) {
+        console.error('Email pipeline failed:', error);
+        alert('Could not send message. Please email directly to saharishi409@gmail.com');
       } finally {
         submitBtn.textContent = originalText;
         submitBtn.disabled    = false;

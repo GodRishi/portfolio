@@ -1,0 +1,267 @@
+[
+  {
+    "id": "TC001",
+    "title": "Load the portfolio home page",
+    "description": "A visitor can open the main portfolio landing page and see the core homepage content rendered.",
+    "category": "Country & Currency Selector",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the homepage content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the main portfolio navigation or featured content is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Submit a lead inquiry successfully",
+    "description": "A potential client can complete the contact form with valid details and see the success confirmation after submission.",
+    "category": "Lead Contact Form",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with a valid email address"
+      },
+      {
+        "type": "action",
+        "description": "Select a budget tier"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the message field with an inquiry message"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the transmission result is shown to the user"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Update the region and see pricing adapt",
+    "description": "A visitor can change country and currency and see the region-specific header and pricing details update together.",
+    "category": "Country & Currency Selector",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the country and currency selector"
+      },
+      {
+        "type": "action",
+        "description": "Choose a different country and currency"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the header region indicator updates"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the hero pricing hint and contact budget options update"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Switch to the alternate theme",
+    "description": "A visitor can toggle the site into the alternate visual theme and confirm the page restyles correctly.",
+    "category": "Brutalist Theme Toggle",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Toggle the theme switch"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the site styling changes to the alternate theme"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the layout and main content remain visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Keep regional pricing consistent across the page",
+    "description": "A visitor can select a region and see the updated pricing language remain consistent in the main pricing areas of the page.",
+    "category": "Country & Currency Selector",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the country and currency selector"
+      },
+      {
+        "type": "action",
+        "description": "Choose a different country and currency"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the pricing-related content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify regional pricing text is displayed in the page content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected currency is reflected consistently"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Return to the original theme",
+    "description": "A visitor can toggle back to the original theme after switching themes and the site returns to its initial appearance.",
+    "category": "Brutalist Theme Toggle",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Toggle the theme switch"
+      },
+      {
+        "type": "action",
+        "description": "Toggle the theme switch again"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the site styling returns to the original theme"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the homepage content remains visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Explore the featured portfolio presentation",
+    "description": "A visitor can browse the landing page presentation and see the featured content and interactive visuals appear correctly.",
+    "category": "Brutalist Theme Toggle",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll through the main landing page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify featured portfolio content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify interactive visual elements are present"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC008",
+    "title": "Preserve the selected region while continuing to browse",
+    "description": "A visitor can change the region and continue exploring the page with the selected currency still reflected in the visible session state.",
+    "category": "Country & Currency Selector",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Open the country and currency selector"
+      },
+      {
+        "type": "action",
+        "description": "Choose a different country and currency"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to another section of the page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected region is still reflected in the page header"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated currency remains visible in the session state"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC009",
+    "title": "Show validation for an incomplete inquiry",
+    "description": "A potential client sees form validation when required contact details are missing before submission.",
+    "category": "Lead Contact Form",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Leave the required contact fields empty"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify form validation errors are visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the form is not submitted"
+      }
+    ],
+    "priority": "Low"
+  }
+]

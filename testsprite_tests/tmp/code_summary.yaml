@@ -1,0 +1,56 @@
+version: "2"
+type: frontend
+tech_stack:
+  - JavaScript
+  - Vite
+  - GSAP
+  - CSS
+routes:
+  - path: /
+    file: index.html
+    auth_required: false
+    description: Main portfolio website
+features:
+  - name: Country and Currency Selector
+    description: Selecting a country/currency updates price hints and project budgets across the website.
+    files:
+      - index.html
+      - src/main.js
+    entry_route: /
+    user_interactions:
+      - Click on the country selector button.
+      - Click on a country in the dropdown list (e.g., USA).
+      - Check if the flag and currency label update on the button.
+      - Verify that the price hint in the hero section updates (e.g., $1,000).
+      - Verify that the budget options in the contact form update.
+    api_calls: []
+    auth_required: false
+  - name: Brutalist Theme Toggle
+    description: Toggles between Obsidian Dark theme and Blinding Light theme.
+    files:
+      - index.html
+      - src/main.js
+    entry_route: /
+    user_interactions:
+      - Click the Brutalist Theme Toggle switch.
+      - Verify the theme changes by checking classes on the HTML element.
+    api_calls: []
+    auth_required: false
+  - name: Lead Contact Form
+    description: Submits business inquiries via Web3Forms or launches mailto fallback.
+    files:
+      - index.html
+      - src/main.js
+    entry_route: /
+    user_interactions:
+      - Fill in name in the name input field.
+      - Fill in email in the email input field.
+      - Select a budget tier from the dropdown.
+      - Fill in the message text area.
+      - Click SEND MESSAGE button.
+      - Verify the transmission success overlay appears.
+    api_calls:
+      - method: POST
+        endpoint: https://api.web3forms.com/submit
+    auth_required: false
+known_limitations: []
