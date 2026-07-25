@@ -139,22 +139,22 @@ export class CodeCanvasManager {
   updateColors() {
     if (this.isLight) {
       this.bgColor = '#f5f5f5';
-      this.baseTextColor = 'rgba(0, 0, 0, 0.18)'; 
-      this.lineNumColor = 'rgba(112, 0, 255, 0.14)';
-      this.guideLineColor = 'rgba(0, 0, 0, 0.04)';
+      this.baseTextColor = 'rgba(0, 0, 0, 0.12)'; 
+      this.lineNumColor = 'rgba(112, 0, 255, 0.10)';
+      this.guideLineColor = 'rgba(0, 0, 0, 0.03)';
       
       this.glowStart = '#ff0055'; 
       this.glowMid = '#7000ff';   
-      this.bgGlowColor = 'rgba(255, 0, 85, 0.08)';
+      this.bgGlowColor = 'rgba(255, 0, 85, 0.05)';
     } else {
       this.bgColor = '#050505';
-      this.baseTextColor = 'rgba(255, 255, 255, 0.22)';
-      this.lineNumColor = 'rgba(0, 255, 102, 0.18)';
-      this.guideLineColor = 'rgba(255, 255, 255, 0.03)';
+      this.baseTextColor = 'rgba(100, 145, 115, 0.15)'; // Dim, desaturated green-gray code base
+      this.lineNumColor = 'rgba(45, 90, 61, 0.20)';     // Muted line numbers
+      this.guideLineColor = 'rgba(255, 255, 255, 0.02)';
       
-      this.glowStart = '#00ff66'; 
-      this.glowMid = '#00f0ff';   
-      this.bgGlowColor = 'rgba(0, 255, 102, 0.12)';
+      this.glowStart = '#1b7a43'; // Softened green cursor highlight
+      this.glowMid = '#165261';   // Softened cyan cursor mid
+      this.bgGlowColor = 'rgba(45, 90, 61, 0.08)';
     }
   }
 
