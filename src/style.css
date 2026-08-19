@@ -1658,3 +1658,42 @@ html.light .code-box-header { color: #334155; }
   border-top: 1px solid var(--border-color);
   flex-wrap: wrap;
 }
+
+/* ==========================================================================
+   BULLETPROOF PRODUCTION VERCEL BACKDROP-FILTER FEATURE QUERY PROTECTION
+   ========================================================================== */
+@supports (-webkit-backdrop-filter: none) {
+  .main-header,
+  .grid-card,
+  .portfolio-item-card,
+  .skill-audit-widget,
+  .modal-content-card,
+  .mobile-bottom-dock,
+  .country-btn,
+  .btn-toggle,
+  .country-dropdown,
+  .project-link,
+  .case-study-btn,
+  .tech-tag-pill,
+  .availability-badge {
+    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  }
+}
+
+@supports (backdrop-filter: none) {
+  .main-header,
+  .grid-card,
+  .portfolio-item-card,
+  .skill-audit-widget,
+  .modal-content-card,
+  .mobile-bottom-dock,
+  .country-btn,
+  .btn-toggle,
+  .country-dropdown,
+  .project-link,
+  .case-study-btn,
+  .tech-tag-pill,
+  .availability-badge {
+    backdrop-filter: blur(28px) saturate(180%) !important;
+  }
+}

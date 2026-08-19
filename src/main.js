@@ -1,4 +1,5 @@
 import './style.css';
+import './mobile.css';
 import { CodeCanvasManager } from './bg-canvas.js';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
