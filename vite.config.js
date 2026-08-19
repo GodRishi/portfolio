@@ -7,6 +7,7 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true
+    sourcemap: true,
+    cssTarget: ['chrome61', 'edge79', 'firefox70', 'safari12', 'ios12']
   }
 });

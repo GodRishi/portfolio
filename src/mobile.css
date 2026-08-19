@@ -39,10 +39,12 @@
     padding: 1.15rem 1rem !important;
     border-radius: 20px !important;
     border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    background: rgba(16, 16, 20, 0.72) !important;
+    background: rgba(16, 16, 20, 0.65) !important;
     backdrop-filter: blur(25px) saturate(180%) !important;
     -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    transform: translateZ(0) !important;
+    will-change: backdrop-filter;
   }
 
   html.light .grid-card {
@@ -79,6 +81,8 @@
     position: relative !important;
     top: 0 !important;
     z-index: 5000 !important;
+    transform: translateZ(0) !important;
+    will-change: backdrop-filter;
   }
 
   html.light .main-header {
@@ -447,6 +451,8 @@
     display: flex !important;
     justify-content: space-around !important;
     align-items: center !important;
+    transform: translateZ(0) !important;
+    will-change: backdrop-filter;
   }
 
   html.light .mobile-bottom-dock {
