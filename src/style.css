@@ -127,20 +127,28 @@ body:hover #custom-cursor {
   display: block;
 }
 
-/* --- Header Layout --- */
+/* --- macOS Apple Floating Glass Navigation Bar --- */
 .main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(8px);
-  border: var(--border-width) solid var(--border-color);
-  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--shadow-color);
-  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-  /* Establish stacking context above all grid-card backdrop-filter layers */
-  position: relative;
-  z-index: 500;
+  padding: 0.85rem 1.75rem;
+  background: rgba(255, 255, 255, 0.05); /* Pure Glass Translucency */
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px; /* Floating Apple Pill Bar */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: sticky;
+  top: 1rem;
+  z-index: 5000;
+}
+
+html.light .main-header {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .header-logo {
@@ -149,18 +157,41 @@ body:hover #custom-cursor {
 }
 
 .logo-bold {
-  font-family: var(--font-headings);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
   font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: -0.05em;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
   line-height: 1;
 }
 
 .logo-tag {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
   color: var(--accent-color);
-  font-weight: bold;
+  font-weight: 700;
+}
+
+/* macOS Desktop Navigation Links */
+.desktop-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.desktop-nav-links .nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.desktop-nav-links .nav-link:hover {
+  color: var(--text-color);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* Header controls row */
@@ -179,24 +210,32 @@ body:hover #custom-cursor {
 .country-btn {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  background: var(--surface-color);
-  border: var(--border-width) solid var(--border-color);
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
   color: var(--text-color);
   font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: bold;
-  padding: 0.7rem 1rem;
+  padding: 0.6rem 1.1rem;
   cursor: pointer;
-  box-shadow: 3px 3px 0px var(--shadow-color);
-  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
+}
+
+html.light .country-btn {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .country-btn:hover {
   border-color: var(--accent-color);
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0px var(--shadow-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
 .country-chevron {
@@ -212,15 +251,24 @@ body:hover #custom-cursor {
 .country-dropdown {
   display: none;
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 8px);
   right: 0;
-  background: var(--surface-color);
-  border: var(--border-width) solid var(--border-color);
-  box-shadow: 6px 6px 0px var(--shadow-color);
+  background: rgba(20, 20, 24, 0.95);
+  backdrop-filter: blur(35px) saturate(200%);
+  -webkit-backdrop-filter: blur(35px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   list-style: none;
-  min-width: 200px;
+  min-width: 210px;
   z-index: 9999;
-  padding: 0.25rem 0;
+  padding: 0.4rem;
+}
+
+html.light .country-dropdown {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
 }
 
 .country-selector.open .country-dropdown {
@@ -231,9 +279,10 @@ body:hover #custom-cursor {
   padding: 0.6rem 1rem;
   font-family: var(--font-mono);
   font-size: 0.82rem;
+  border-radius: 10px;
   cursor: pointer;
   transition: background 0.15s ease;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .country-dropdown li:last-child {
@@ -248,25 +297,33 @@ body:hover #custom-cursor {
 
 /* --- Theme Toggle Switch Button --- */
 .btn-toggle {
-  background: var(--surface-color);
-  border: var(--border-width) solid var(--border-color);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
   color: var(--text-color);
   font-family: var(--font-mono);
   font-weight: bold;
-  padding: 0.75rem 1.25rem;
+  padding: 0.6rem 1.1rem;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  box-shadow: 3px 3px 0px var(--shadow-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.light .btn-toggle {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .btn-toggle:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0px var(--shadow-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
 .btn-toggle:active {
@@ -294,34 +351,49 @@ html.light .toggle-text-dark { display: none; }
   gap: 2rem;
 }
 
-/* Base Card Style */
+/* Base Card Style (macOS Apple Glass Panel) */
 .grid-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  border: var(--border-width) solid var(--border-color);
-  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--shadow-color);
+  background: rgba(16, 16, 20, 0.72);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   padding: 2.5rem;
   position: relative;
-  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
+}
+
+html.light .grid-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.grid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 /* Neon Top-Left Badges */
 .card-badge {
   position: absolute;
   top: -12px;
-  left: 15px;
+  left: 20px;
   background: var(--accent-color);
   color: var(--bg-color);
   font-family: var(--font-mono);
   font-weight: bold;
-  font-size: 0.75rem;
-  padding: 0.25rem 0.75rem;
-  border: var(--border-width) solid var(--border-color);
+  font-size: 0.72rem;
+  padding: 0.25rem 0.85rem;
+  border-radius: 20px;
   text-transform: uppercase;
   z-index: 5;
-  box-shadow: 2px 2px 0px var(--shadow-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.04em;
 }
 
 /* --- Hero Card Styling --- */
@@ -359,20 +431,22 @@ html.light .toggle-text-dark { display: none; }
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: bold;
-  background: var(--surface-color);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
   color: var(--accent-color);
   padding: 0.35rem 0.85rem;
-  border: 1px solid var(--border-color);
-  box-shadow: 2px 2px 0px var(--shadow-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   text-transform: uppercase;
-  transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .tech-tag-pill:hover {
-  border-color: var(--accent-secondary);
+  border-color: var(--accent-color);
   color: var(--text-color);
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0px var(--shadow-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
 /* Availability Badge (Suggestion E) */
@@ -380,14 +454,16 @@ html.light .toggle-text-dark { display: none; }
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  background: var(--surface-color);
-  border: 1px solid var(--accent-color);
+  background: rgba(0, 255, 102, 0.08);
+  border: 1px solid rgba(0, 255, 102, 0.25);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
   color: var(--text-color);
   font-family: var(--font-mono);
   font-size: 0.78rem;
   padding: 0.45rem 0.9rem;
   margin-bottom: 1.25rem;
-  box-shadow: 2px 2px 0px var(--shadow-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   width: fit-content;
 }
 
@@ -419,7 +495,7 @@ html.light .toggle-text-dark { display: none; }
   font-weight: bold;
 }
 
-/* Brutalist Buttons */
+/* Apple Glass Desktop Buttons */
 .cta-group {
   display: flex;
   gap: 1.25rem;
@@ -429,48 +505,59 @@ html.light .toggle-text-dark { display: none; }
 .btn {
   font-family: var(--font-mono);
   font-weight: bold;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   text-decoration: none;
-  padding: 1rem 2rem;
-  border: var(--border-width) solid var(--border-color);
+  padding: 0.85rem 1.85rem;
+  border-radius: 20px;
   cursor: pointer;
-  transition: all 0.15s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .btn-primary {
   background: var(--accent-color);
   color: var(--bg-color);
-  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--shadow-color);
+  border: 1px solid var(--accent-color);
+  box-shadow: 0 4px 16px rgba(0, 255, 102, 0.25);
 }
 
 .btn-primary:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0px var(--shadow-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 255, 102, 0.4);
 }
 
 .btn-primary:active {
-  transform: translate(2px, 2px);
-  box-shadow: calc(var(--shadow-offset) - 2px) calc(var(--shadow-offset) - 2px) 0px var(--shadow-color);
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0, 255, 102, 0.2);
 }
 
 .btn-secondary {
-  background: var(--surface-color);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   color: var(--text-color);
-  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--shadow-color);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+html.light .btn-secondary {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0px var(--shadow-color);
+  transform: translateY(-2px);
+  border-color: var(--accent-color);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
 .btn-secondary:active {
-  transform: translate(2px, 2px);
-  box-shadow: calc(var(--shadow-offset) - 2px) calc(var(--shadow-offset) - 2px) 0px var(--shadow-color);
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-accent {
@@ -1341,34 +1428,53 @@ html.light .window-address {
 .playback-code .code-str { color: var(--accent-color); }
 .playback-code .code-num { color: #ffbd2e; }
 
-/* --- Project Actions Row & Modal --- */
+/* --- Project Actions Row & Modal (macOS Apple Glass Window) --- */
 .project-actions-row {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
 
+.project-link,
 .case-study-btn {
-  background: var(--surface-color);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   color: var(--text-color);
-  border-color: var(--border-color);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 0.65rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.project-link:hover,
 .case-study-btn:hover {
-  background: var(--text-color);
+  background: var(--accent-color);
   color: var(--bg-color);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 255, 102, 0.3);
 }
 
-/* Modal Overlay & Card */
+/* Modal Overlay & Card (macOS Glass Window) */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -1381,16 +1487,19 @@ html.light .window-address {
 }
 
 .modal-content-card {
-  background: var(--surface-color);
-  border: var(--border-width) solid var(--border-color);
-  box-shadow: 8px 8px 0px var(--shadow-color);
+  background: rgba(18, 18, 22, 0.94);
+  backdrop-filter: blur(35px) saturate(200%);
+  -webkit-backdrop-filter: blur(35px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   max-width: 850px;
   width: 100%;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
   position: relative;
-  padding: 2rem;
+  padding: 2.25rem;
 }
 
 .modal-close-btn {

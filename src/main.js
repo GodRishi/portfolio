@@ -232,37 +232,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. Deep-Dive Case Study Modal Handlers (Item #3)
-  const openModalBtn = document.getElementById('open-mehta-case-study');
-  const closeModalBtn = document.getElementById('close-modal-btn');
-  const closeModalBottomBtn = document.getElementById('close-modal-bottom-btn');
-  const modalOverlay = document.getElementById('case-study-modal');
+  // 6. Deep-Dive Case Study Modal Handlers (All 4 Projects)
+  function setupModal(openBtnId, modalId, closeBtnId, closeBottomBtnId) {
+    const openBtn = document.getElementById(openBtnId);
+    const modal = document.getElementById(modalId);
+    const closeBtn = document.getElementById(closeBtnId);
+    const closeBottomBtn = document.getElementById(closeBottomBtnId);
 
-  if (openModalBtn && modalOverlay) {
-    openModalBtn.addEventListener('click', () => {
-      modalOverlay.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    });
-  }
-
-  const closeModal = () => {
-    if (modalOverlay) {
-      modalOverlay.classList.add('hidden');
-      document.body.style.overflow = '';
+    if (openBtn && modal) {
+      openBtn.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      });
     }
-  };
 
-  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-  if (closeModalBottomBtn) closeModalBottomBtn.addEventListener('click', closeModal);
-  if (modalOverlay) {
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) closeModal();
+    const handleClose = () => {
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    };
+
+    if (closeBtn) closeBtn.addEventListener('click', handleClose);
+    if (closeBottomBtn) closeBottomBtn.addEventListener('click', handleClose);
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) handleClose();
+      });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') handleClose();
     });
   }
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
-  });
+  setupModal('open-crunch-case-study', 'crunch-case-study-modal', 'close-crunch-modal-btn', 'close-crunch-modal-bottom-btn');
+  setupModal('open-digital-dream-case-study', 'digital-dream-case-study-modal', 'close-digital-dream-modal-btn', 'close-digital-dream-modal-bottom-btn');
+  setupModal('open-palms-kitchen-case-study', 'palms-kitchen-case-study-modal', 'close-palms-kitchen-modal-btn', 'close-palms-kitchen-modal-bottom-btn');
+  setupModal('open-mehta-case-study', 'case-study-modal', 'close-modal-btn', 'close-modal-bottom-btn');
 
   // 7. Canvas Controls — Pause / Scramble
   const pauseBtn    = document.getElementById('pause-stream-btn');
@@ -404,6 +411,32 @@ document.addEventListener('DOMContentLoaded', () => {
       x: idx % 2 === 0 ? -25 : 25, opacity: 0, duration: 0.5, ease: 'power2.out',
     });
   });
+
+  // 12. Mobile Bottom Dock Active Tab Observer
+  const dockTabs = document.querySelectorAll('.mobile-dock-tab');
+  if (dockTabs.length > 0) {
+    const sections = [
+      document.getElementById('hero-section'),
+      document.getElementById('portfolio-section'),
+      document.getElementById('how-it-works'),
+      document.getElementById('contact-section')
+    ];
+
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY + 200;
+      sections.forEach((sec, idx) => {
+        if (!sec) return;
+        const top = sec.offsetTop;
+        const height = sec.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          dockTabs.forEach(tab => tab.classList.remove('active'));
+          if (dockTabs[idx] && !dockTabs[idx].classList.contains('mobile-dock-cta')) {
+            dockTabs[idx].classList.add('active');
+          }
+        }
+      });
+    }, { passive: true });
+  }
 
   // Refresh after one frame so ScrollTrigger detects elements already on screen
   requestAnimationFrame(() => ScrollTrigger.refresh());

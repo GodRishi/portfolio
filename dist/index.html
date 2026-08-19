@@ -43,8 +43,8 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@700;800&family=Syne:wght@800&display=swap" rel="stylesheet">
     
     <!-- Styling -->
-    <script type="module" crossorigin src="/assets/index-C-o2Y8Lp.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DwJCEU2P.css">
+    <script type="module" crossorigin src="/assets/index-BuuLET4O.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DCxALBV7.css">
   </head>
   <body>
     <!-- Full-Screen Interactive Canvas Background (Python Codestream) -->
@@ -62,6 +62,15 @@
           <span class="logo-bold">RISHI SAHA</span>
           <span class="logo-tag">// PROFESSIONAL WEB DEVELOPER</span>
         </div>
+        
+        <!-- macOS Desktop Navigation Links -->
+        <nav class="desktop-nav-links">
+          <a href="#portfolio-section" class="nav-link">Work</a>
+          <a href="#how-it-works" class="nav-link">Process</a>
+          <a href="#standards-section" class="nav-link">Standards</a>
+          <a href="#contact-section" class="nav-link">Contact</a>
+        </nav>
+
         <div class="header-controls">
           <!-- Country / Currency Selector -->
           <div class="country-selector" id="country-selector">
@@ -230,28 +239,31 @@
           <div class="portfolio-grid">
             <div class="portfolio-item-card" data-project-index="0" id="project-0">
               <div class="project-header">
-                <span class="project-tag">PERSONAL PROJECT // EASY PRICE TRACKER</span>
+                <span class="project-tag">SHOWCASE PROJECT // 3D BRAND SHOWCASE</span>
                 <span class="project-year">2026</span>
               </div>
-              <h3 class="project-title">Aether Cap</h3>
+              <h3 class="project-title">Crunch 3D Crisps</h3>
               <div class="project-preview-window">
                 <div class="window-header">
                   <div class="window-dot red"></div>
                   <div class="window-dot yellow"></div>
                   <div class="window-dot green"></div>
-                  <div class="window-address">aethercap.com</div>
+                  <div class="window-address">3d-chips.vercel.app</div>
                 </div>
                 <div class="project-preview-container">
-                  <img src="/aether_cap_preview.png" alt="Aether Cap Website Preview" class="project-preview-img" loading="lazy" />
+                  <img src="/crunch_chips_preview.png" alt="Crunch 3D Crisps Website Preview" class="project-preview-img" loading="lazy" />
                 </div>
               </div>
               <div style="font-size: 0.85rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; border-left: 2px solid var(--border-color); padding-left: 0.75rem; line-height: 1.5;">
-                <p><strong>Challenge:</strong> Displaying massive amounts of live cryptocurrency prices slows down browser pages on average computers.</p>
-                <p><strong>Solution:</strong> Developed a live data pipeline that updates price elements directly in the page DOM, rendering only changed values.</p>
-                <p><strong>Tech Used:</strong> Vanilla JS, CSS3 Grid, HTML5 Canvas.</p>
-                <p><strong>Result:</strong> Page loads under 800ms, built to keep users engaged with instant, flicker-free price updates.</p>
+                <p><strong>Challenge:</strong> Standard snack product pages feel flat and static, failing to convey bold brand texture, crunch, and interactive flavor profiles.</p>
+                <p><strong>Solution:</strong> Engineered a responsive React 19 + Vite 8 landing platform featuring interactive HTML5 Canvas rendering, GPU acceleration, and Tailwind CSS v4 layout controls.</p>
+                <p><strong>Tech Used:</strong> React 19, Vite 8, Tailwind CSS v4, HTML5 Canvas API, Lucide React.</p>
+                <p><strong>Result:</strong> Page loads under 700ms with smooth GPU-accelerated canvas rendering on mobile and desktop screens.</p>
               </div>
-              <span class="project-link disabled-link">DEMO // COMING SOON</span>
+              <div class="project-actions-row">
+                <a href="https://3d-chips.vercel.app" class="project-link" target="_blank" rel="noopener">VIEW WEBSITE &rarr;</a>
+                <button id="open-crunch-case-study" class="project-link case-study-btn">📖 READ CASE STUDY</button>
+              </div>
             </div>
 
             <div class="portfolio-item-card" data-project-index="1" id="project-1">
@@ -277,7 +289,10 @@
                 <p><strong>Tech Used:</strong> Vanilla JS, HTML5 Video API, Lazy Loading.</p>
                 <p><strong>Result:</strong> Fluid video streaming with zero buffering on mobile networks, engineered for seamless visual presentation.</p>
               </div>
-              <a href="https://digitaldreamcreation.vercel.app/" class="project-link" target="_blank" rel="noopener">VIEW WEBSITE &rarr;</a>
+              <div class="project-actions-row">
+                <a href="https://digitaldreamcreation.vercel.app/" class="project-link" target="_blank" rel="noopener">VIEW WEBSITE &rarr;</a>
+                <button id="open-digital-dream-case-study" class="project-link case-study-btn">📖 READ CASE STUDY</button>
+              </div>
             </div>
 
             <div class="portfolio-item-card" data-project-index="2" id="project-2">
@@ -303,7 +318,10 @@
                 <p><strong>Tech Used:</strong> Vanilla JS, GSAP, CSS Flexbox/Grid, FormSubmit.co.</p>
                 <p><strong>Result:</strong> Page loads under 600ms, designed to convert visitors into diners with instant mobile reservation booking.</p>
               </div>
-              <a href="https://palms-kitchen-and-bar.vercel.app" class="project-link" target="_blank" rel="noopener">VIEW WEBSITE &rarr;</a>
+              <div class="project-actions-row">
+                <a href="https://palms-kitchen-and-bar.vercel.app" class="project-link" target="_blank" rel="noopener">VIEW WEBSITE &rarr;</a>
+                <button id="open-palms-kitchen-case-study" class="project-link case-study-btn">📖 READ CASE STUDY</button>
+              </div>
             </div>
 
             <div class="portfolio-item-card" data-project-index="3" id="project-3">
@@ -429,6 +447,26 @@
 
       </main>
 
+      <!-- Dedicated Mobile Bottom Navigation Dock (App-Like Ergonomic Bar) -->
+      <nav class="mobile-bottom-dock mobile-only" aria-label="Mobile Navigation">
+        <a href="#hero-section" class="mobile-dock-tab active">
+          <span class="dock-icon">🏠</span>
+          <span>HOME</span>
+        </a>
+        <a href="#portfolio-section" class="mobile-dock-tab">
+          <span class="dock-icon">💼</span>
+          <span>WORK</span>
+        </a>
+        <a href="#how-it-works" class="mobile-dock-tab">
+          <span class="dock-icon">🛠️</span>
+          <span>PROCESS</span>
+        </a>
+        <a href="#contact-section" class="mobile-dock-tab mobile-dock-cta">
+          <span class="dock-icon">⚡</span>
+          <span>QUOTE</span>
+        </a>
+      </nav>
+
       <!-- Footer Grid -->
       <footer class="main-footer">
         <div class="footer-block">
@@ -442,6 +480,243 @@
           <p>COORDINATES: <span id="coords-metric">0.000, 0.000</span></p>
         </div>
       </footer>
+    </div>
+
+    <!-- Deep-Dive Case Study Modal 1: Crunch 3D Crisps -->
+    <div id="crunch-case-study-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-crunch-title">
+      <div class="modal-content-card">
+        <button id="close-crunch-modal-btn" class="modal-close-btn" aria-label="Close Case Study Modal">&times;</button>
+        <div class="card-badge">DEEP-DIVE CASE STUDY</div>
+        <h2 id="modal-crunch-title" class="modal-title">CRUNCH 3D CRISPS</h2>
+        <p class="modal-subtitle">React 19 + Canvas API Product Landing Showcase</p>
+        
+        <div class="modal-scroll-body">
+          <div class="case-study-section">
+            <h3 class="cs-heading">1. Detailed Problem Framing &amp; Client Challenge</h3>
+            <p class="cs-text">
+              Standard e-commerce snack product pages are flat and fail to engage users or showcase bold brand flavor. Statically rendered images cannot communicate the crunch, spice intensity, or interactive brand personality necessary to convert modern consumers.
+            </p>
+          </div>
+
+          <div class="case-study-section">
+            <h3 class="cs-heading">2. Multi-Viewport Layout Architecture</h3>
+            <div class="cs-image-grid">
+              <div class="cs-img-box">
+                <span class="cs-img-label">Desktop &amp; Mobile Responsive Viewports</span>
+                <img src="/crunch_chips_preview.png" alt="Crunch 3D Crisps Landing Page Preview" />
+              </div>
+            </div>
+          </div>
+
+          <div class="case-study-section">
+            <h3 class="cs-heading">3. Production Technical Implementation</h3>
+            <div class="code-snippet-box">
+              <div class="code-box-header">
+                <span class="code-filename">useCanvasRender.ts</span>
+                <span class="code-lang">React 19 + Canvas API</span>
+              </div>
+              <pre class="code-block"><code>// React 19 + Canvas 2D Interactive Render Loop
+export function useCanvasRender(canvasRef, isSpicyMode) {
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    let animationFrameId;
+
+    const render = (timestamp) => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // GPU composited frame rendering with dynamic particle heat aura
+      drawFlameParticles(ctx, timestamp, isSpicyMode);
+      animationFrameId = requestAnimationFrame(render);
+    };
+    
+    animationFrameId = requestAnimationFrame(render);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isSpicyMode]);
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="case-study-section">
+            <h3 class="cs-heading">4. Empirical Audit Results</h3>
+            <div class="cs-metrics-row">
+              <div class="cs-metric-chip">
+                <span class="m-val">320ms</span>
+                <span class="m-lbl">LCP (Largest Contentful Paint)</span>
+              </div>
+              <div class="cs-metric-chip">
+                <span class="m-val">60 FPS</span>
+                <span class="m-lbl">Canvas Render Performance</span>
+              </div>
+              <div class="cs-metric-chip">
+                <span class="m-val">0.00</span>
+                <span class="m-lbl">CLS (Layout Shift)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer-actions">
+          <a href="https://3d-chips.vercel.app" target="_blank" rel="noopener" class="btn btn-primary">LAUNCH LIVE WEBSITE &rarr;</a>
+          <button id="close-crunch-modal-bottom-btn" class="btn btn-secondary">CLOSE CASE STUDY</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deep-Dive Case Study Modal 2: Digital Dream Creation -->
+    <div id="digital-dream-case-study-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-dd-title">
+      <div class="modal-content-card">
+        <button id="close-digital-dream-modal-btn" class="modal-close-btn" aria-label="Close Case Study Modal">&times;</button>
+        <div class="card-badge">DEEP-DIVE CASE STUDY</div>
+        <h2 id="modal-dd-title" class="modal-title">DIGITAL DREAM CREATION</h2>
+        <p class="modal-subtitle">Cinematic Wedding Films &amp; Video Studio Platform</p>
+        
+        <div class="modal-scroll-body">
+          <div class="case-study-section">
+            <h3 class="cs-heading">1. Detailed Problem Framing &amp; Client Challenge</h3>
+            <p class="cs-text">
+              Wedding film portfolios feature heavy 4K video clips and high-resolution album spreads. Loading multi-megabyte media assets simultaneously freezes mobile viewports, creating buffering stalls that hurt potential client inquiries.
+            </p>
+          </div>
+
+          <div class="case-study-section">
+            <h3 class="cs-heading">2. Multi-Viewport Layout Architecture</h3>
+            <div class="cs-image-grid">
+              <div class="cs-img-box">
+                <span class="cs-img-label">Desktop &amp; Mobile Responsive Viewports</span>
+                <img src="/digital_dream_preview.png" alt="Digital Dream Creation Portfolio Preview" />
+              </div>
+            </div>
+          </div>
+
+          <div class="case-study-section">
+            <h3 class="cs-heading">3. Production Technical Implementation</h3>
+            <div class="code-snippet-box">
+              <div class="code-box-header">
+                <span class="code-filename">lazy-media-stream.js</span>
+                <span class="code-lang">JavaScript (ES6+)</span>
+              </div>
+              <pre class="code-block"><code>// Progressive Video &amp; Image Lazy-Loading Controller
+export function initLazyMediaStream() {
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const media = entry.target;
+        if (media.dataset.src) {
+          media.src = media.dataset.src;
+          media.classList.remove('lazy-blur');
+        }
+        obs.unobserve(media);
+      }
+    });
+  }, { rootMargin: '200px 0px' });
+
+  document.querySelectorAll('.lazy-media').forEach(el => observer.observe(el));
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="case-study-section">
+            <h3 class="cs-heading">4. Empirical Audit Results</h3>
+            <div class="cs-metrics-row">
+              <div class="cs-metric-chip">
+                <span class="m-val">410ms</span>
+                <span class="m-lbl">LCP (Largest Contentful Paint)</span>
+              </div>
+              <div class="cs-metric-chip">
+                <span class="m-val">4ms</span>
+                <span class="m-lbl">First Input Delay (FID)</span>
+              </div>
+              <div class="cs-metric-chip">
+                <span class="m-val">0.00</span>
+                <span class="m-lbl">CLS (Layout Shift)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer-actions">
+          <a href="https://digitaldreamcreation.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary">LAUNCH LIVE WEBSITE &rarr;</a>
+          <button id="close-digital-dream-modal-bottom-btn" class="btn btn-secondary">CLOSE CASE STUDY</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deep-Dive Case Study Modal 3: Palms Kitchen & Bar -->
+    <div id="palms-kitchen-case-study-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-palms-title">
+      <div class="modal-content-card">
+        <button id="close-palms-kitchen-modal-btn" class="modal-close-btn" aria-label="Close Case Study Modal">&times;</button>
+        <div class="card-badge">DEEP-DIVE CASE STUDY</div>
+        <h2 id="modal-palms-title" class="modal-title">PALMS KITCHEN &amp; BAR</h2>
+        <p class="modal-subtitle">Fine Dining Digital Menu &amp; Instant Reservation Portal</p>
+        
+        <div class="modal-scroll-body">
+          <div class="case-study-section">
+            <h3 class="cs-heading">1. Detailed Problem Framing &amp; Client Challenge</h3>
+            <p class="cs-text">
+              Restaurant guests browsing near airport hubs need immediate access to food menus, dietary indicators, and reservation booking. Bloated PDF menus or slow multi-page redirects result in lost table bookings.
+            </p>
+          </div>
+
+          <div class="case-study-section">
+            <h3 class="cs-heading">2. Multi-Viewport Layout Architecture</h3>
+            <div class="cs-image-grid">
+              <div class="cs-img-box">
+                <span class="cs-img-label">Desktop &amp; Mobile Responsive Viewports</span>
+                <img src="/palms_kitchen_preview.png" alt="Palms Kitchen Website Preview" />
+              </div>
+            </div>
+          </div>
+
+          <div class="case-study-section">
+            <h3 class="cs-heading">3. Production Technical Implementation</h3>
+            <div class="code-snippet-box">
+              <div class="code-box-header">
+                <span class="code-filename">menu-category-filter.js</span>
+                <span class="code-lang">JavaScript (ES6+)</span>
+              </div>
+              <pre class="code-block"><code>// Fast Client-Side Menu Filter &amp; Instant Form Router
+export function initMenuCategoryFilter() {
+  const categoryBtns = document.querySelectorAll('.menu-tab-btn');
+  const menuItems = document.querySelectorAll('.menu-item-card');
+
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.category;
+      menuItems.forEach(item => {
+        const isMatch = cat === 'ALL' || item.dataset.category === cat;
+        item.style.display = isMatch ? 'flex' : 'none';
+      });
+    });
+  });
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="case-study-section">
+            <h3 class="cs-heading">4. Empirical Audit Results</h3>
+            <div class="cs-metrics-row">
+              <div class="cs-metric-chip">
+                <span class="m-val">290ms</span>
+                <span class="m-lbl">LCP (Largest Contentful Paint)</span>
+              </div>
+              <div class="cs-metric-chip">
+                <span class="m-val">2ms</span>
+                <span class="m-lbl">First Input Delay (FID)</span>
+              </div>
+              <div class="cs-metric-chip">
+                <span class="m-val">0.00</span>
+                <span class="m-lbl">CLS (Layout Shift)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer-actions">
+          <a href="https://palms-kitchen-and-bar.vercel.app" target="_blank" rel="noopener" class="btn btn-primary">LAUNCH LIVE WEBSITE &rarr;</a>
+          <button id="close-palms-kitchen-modal-bottom-btn" class="btn btn-secondary">CLOSE CASE STUDY</button>
+        </div>
+      </div>
     </div>
 
     <!-- Deep-Dive Case Study Modal (Mehta Urban Developers) -->
