@@ -11,6 +11,7 @@ export class CodeCanvasManager {
     this.targetMouse = { x: -2000, y: -2000 };
     this.scrollY = 0;
     this.isPaused = false;
+    this.isTabHidden = false;
 
     this.snippets = [
       "import os, sys, time, json",
@@ -90,7 +91,7 @@ export class CodeCanvasManager {
     
     this.init();
     this.addEventListeners();
-    this.animate();
+    requestAnimationFrame(() => this.animate());
   }
 
   init() {
@@ -101,16 +102,26 @@ export class CodeCanvasManager {
   }
 
   resizeCanvas() {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
+    // Cap DPR at 1.5 to keep canvas drawing smooth on high-res 4K/3X retina displays
+    this.dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    this.viewportWidth = window.innerWidth;
+    this.viewportHeight = window.innerHeight;
+    
+    this.canvas.width = Math.floor(this.viewportWidth * this.dpr);
+    this.canvas.height = Math.floor(this.viewportHeight * this.dpr);
+    this.canvas.style.width = `${this.viewportWidth}px`;
+    this.canvas.style.height = `${this.viewportHeight}px`;
+
+    this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+    this.ctx.scale(this.dpr, this.dpr);
   }
 
   setupCodeObjects() {
     this.codeObjects = [];
     this.ctx.font = `13px "JetBrains Mono", monospace`;
 
-    const numCols = Math.ceil(this.canvas.width / this.colWidth) + 1;
-    const numRows = Math.ceil(this.canvas.height / this.lineHeight) + 4;
+    const numCols = Math.ceil(this.viewportWidth / this.colWidth) + 1;
+    const numRows = Math.ceil(this.viewportHeight / this.lineHeight) + 4;
     this.totalHeight = numRows * this.lineHeight;
 
     for (let col = 0; col < numCols; col++) {
@@ -148,18 +159,23 @@ export class CodeCanvasManager {
       this.bgGlowColor = 'rgba(255, 0, 85, 0.05)';
     } else {
       this.bgColor = '#050505';
-      this.baseTextColor = 'rgba(100, 145, 115, 0.15)'; // Dim, desaturated green-gray code base
-      this.lineNumColor = 'rgba(45, 90, 61, 0.20)';     // Muted line numbers
+      this.baseTextColor = 'rgba(100, 145, 115, 0.15)';
+      this.lineNumColor = 'rgba(45, 90, 61, 0.20)';
       this.guideLineColor = 'rgba(255, 255, 255, 0.02)';
       
-      this.glowStart = '#1b7a43'; // Softened green cursor highlight
-      this.glowMid = '#165261';   // Softened cyan cursor mid
+      this.glowStart = '#1b7a43';
+      this.glowMid = '#165261';
       this.bgGlowColor = 'rgba(45, 90, 61, 0.08)';
     }
   }
 
   addEventListeners() {
-    // Mobile Resize Guard: ignores height-only shifts caused by address bar hide/show
+    // Tab visibility handling: pause GPU canvas loops when tab is hidden
+    document.addEventListener('visibilitychange', () => {
+      this.isTabHidden = document.hidden;
+    }, { passive: true });
+
+    // Mobile Resize Guard
     window.addEventListener('resize', () => {
       const currentWidth = window.innerWidth;
       if (currentWidth !== this.lastWidth) {
@@ -167,18 +183,21 @@ export class CodeCanvasManager {
         this.resizeCanvas();
         this.setupCodeObjects();
       } else {
-        // Height-only resize: expand canvas drawing buffer without scrambling code coordinates
-        this.canvas.height = window.innerHeight;
+        this.viewportHeight = window.innerHeight;
+        this.canvas.height = Math.floor(this.viewportHeight * this.dpr);
+        this.canvas.style.height = `${this.viewportHeight}px`;
+        this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+        this.ctx.scale(this.dpr, this.dpr);
       }
-    });
+    }, { passive: true });
 
-    // Mouse Listeners
+    // Mouse Listeners (Passive)
     window.addEventListener('mousemove', (e) => {
       this.targetMouse.x = e.clientX;
       this.targetMouse.y = e.clientY;
-    });
+    }, { passive: true });
 
-    // Touch Screen Spotlight Bindings for mobile/tablets
+    // Touch Screen Bindings
     window.addEventListener('touchstart', (e) => {
       if (e.touches.length > 0) {
         this.targetMouse.x = e.touches[0].clientX;
@@ -194,7 +213,6 @@ export class CodeCanvasManager {
     }, { passive: true });
 
     window.addEventListener('touchend', () => {
-      // De-authenticate pointer by throwing coordinates offscreen
       this.targetMouse.x = -2000;
       this.targetMouse.y = -2000;
     }, { passive: true });
@@ -222,13 +240,15 @@ export class CodeCanvasManager {
   animate() {
     requestAnimationFrame(this.animate.bind(this));
 
+    // Pause rendering entirely when user switches tabs to save GPU/battery
+    if (this.isTabHidden) return;
+
     this.mouse.x += (this.targetMouse.x - this.mouse.x) * 0.15;
     this.mouse.y += (this.targetMouse.y - this.mouse.y) * 0.15;
 
     this.ctx.fillStyle = this.bgColor;
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.fillRect(0, 0, this.viewportWidth, this.viewportHeight);
 
-    // Skip drawing spotlight effects if pointer is far off-screen
     const hasPointer = this.mouse.x > -1000 && this.mouse.y > -1000;
 
     // 1. Draw Mouse Glow Background Spotlight
@@ -251,20 +271,21 @@ export class CodeCanvasManager {
     // 2. Draw vertical VS Code column guides
     this.ctx.strokeStyle = this.guideLineColor;
     this.ctx.lineWidth = 1;
-    const numCols = Math.ceil(this.canvas.width / this.colWidth) + 1;
+    const numCols = Math.ceil(this.viewportWidth / this.colWidth) + 1;
     for (let col = 0; col < numCols; col++) {
       const guideX = col * this.colWidth + 25;
       this.ctx.beginPath();
       this.ctx.moveTo(guideX, 0);
-      this.ctx.lineTo(guideX, this.canvas.height);
+      this.ctx.lineTo(guideX, this.viewportHeight);
       this.ctx.stroke();
     }
 
-    // 3. Draw Pass One: All Code lines horizontally in readable base colors
+    // 3. Draw Code lines with Viewport Clipping
     this.ctx.font = 'bold 13px "JetBrains Mono", monospace';
     this.ctx.textBaseline = 'middle';
 
     const scrollOffset = -this.scrollY * 0.2; 
+    const vHeight = this.viewportHeight;
 
     this.codeObjects.forEach(obj => {
       if (!this.isPaused) {
@@ -274,11 +295,14 @@ export class CodeCanvasManager {
       if (obj.y + scrollOffset < -40) {
         obj.y += this.totalHeight;
       }
-      if (obj.y + scrollOffset > this.canvas.height + 40) {
+      if (obj.y + scrollOffset > vHeight + 40) {
         obj.y -= this.totalHeight;
       }
 
       const drawY = obj.y + scrollOffset;
+
+      // Viewport Clipping Optimization: Only draw if within visible viewport
+      if (drawY < -30 || drawY > vHeight + 30) return;
 
       // Scramble ticks logic
       let textToDraw = obj.text;
@@ -305,7 +329,7 @@ export class CodeCanvasManager {
       this.ctx.fillText(textToDraw, obj.x, drawY);
     });
 
-    // 4. Draw Pass Two: Glowing spotlight overlay (Optimized with Squared Distance)
+    // 4. Draw Glowing spotlight overlay (Optimized with Squared Distance)
     if (hasPointer) {
       const textRadius = 160;
       const textGlow = this.ctx.createRadialGradient(
@@ -320,21 +344,17 @@ export class CodeCanvasManager {
       this.ctx.shadowBlur = 10;
       this.ctx.shadowColor = this.glowStart;
 
-      // Pre-compute squared check boundary
-      const radiusLimit = textRadius;
-      const radiusLimitSq = radiusLimit * radiusLimit;
+      const radiusLimitSq = textRadius * textRadius;
 
       this.codeObjects.forEach(obj => {
         const drawY = obj.y + scrollOffset;
+        if (drawY < -30 || drawY > vHeight + 30) return;
 
-        // X/Y offsets from mouse
         const dx = obj.x + obj.width / 2 - this.mouse.x;
         const dy = drawY - this.mouse.y;
         
-        // Performance Gain: Calculate squared distance to bypass Math.sqrt calls
         const distSq = dx * dx + dy * dy;
 
-        // Check intersection with squared boundary
         if (distSq < radiusLimitSq + (obj.width * obj.width) / 4) {
           this.ctx.fillText(obj.text, obj.x, drawY);
         }
