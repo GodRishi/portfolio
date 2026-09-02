@@ -416,7 +416,8 @@
               </div>
             </div>
 
-            <!-- Anti-spam honeypot -->
+            <!-- Anti-spam honeypot (Invisible Trap) -->
+            <input type="text" name="_gotcha" id="lead-gotcha" style="display:none !important;" tabindex="-1" autocomplete="off" />
             <input type="text" name="_honey" style="display: none;">
 
             <div class="form-footer">
@@ -468,6 +469,13 @@
         <div class="footer-block">
           <p>&copy; 2026 RISHI SAHA. ALL RIGHTS RESERVED.</p>
           <p>ENGINEERED FOR ABSOLUTE PERFORMANCE.</p>
+          <div class="footer-legal-links" style="margin-top: 0.5rem; font-size: 0.75rem; display: flex; gap: 0.5rem; align-items: center;">
+            <a href="/privacy-policy.html" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
+            <span style="color: var(--border-color);">•</span>
+            <a href="/terms-of-service.html" style="color: var(--text-muted); text-decoration: none;">Terms of Service</a>
+            <span style="color: var(--border-color);">•</span>
+            <a href="/cookie-policy.html" style="color: var(--text-muted); text-decoration: none;">Cookie Policy</a>
+          </div>
         </div>
         <div class="footer-block font-mono">
           <p>LOAD LATENCY: <span id="ping-metric">-- ms</span></p>
@@ -476,6 +484,27 @@
           <p>COORDINATES: <span id="coords-metric">0.000, 0.000</span></p>
         </div>
       </footer>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Floating Apple Glass Cookie Consent Banner -->
+    <div id="cookie-consent-banner" class="cookie-banner hidden" role="region" aria-label="Cookie Consent Preference">
+      <div class="cookie-header">
+        <span class="cookie-icon">🍪</span>
+        <div class="cookie-title-group">
+          <strong>Cookie &amp; Storage Preferences</strong>
+          <span class="cookie-subtitle">Essential local storage &amp; privacy notice</span>
+        </div>
+      </div>
+      <p class="cookie-body">
+        We use essential local storage to remember your theme, currency choices, and rate-limiting security. Learn more in our <a href="/cookie-policy.html" target="_blank" class="cookie-link">Cookie Policy</a>.
+      </p>
+      <div class="cookie-actions">
+        <button id="accept-cookies-btn" class="btn btn-primary btn-sm">ACCEPT ALL</button>
+        <button id="essential-cookies-btn" class="btn btn-secondary btn-sm">ESSENTIAL ONLY</button>
+      </div>
     </div>
 
     <!-- Deep-Dive Case Study Modal 1: Crunch 3D Crisps -->

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Policy | Rishi Saha Development</title>
+    <meta name="description" content="Cookie and Local Storage Policy detailing functional preferences and consent options." />
+    <link rel="canonical" href="https://rishisaha.dev/cookie-policy.html" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --bg-color: #050505;
+        --text-color: #ffffff;
+        --text-muted: #a0aec0;
+        --accent-color: #00ff66;
+        --border-color: rgba(255, 255, 255, 0.12);
+      }
+      
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      
+      body {
+        background: radial-gradient(circle at 15% 15%, rgba(0, 255, 102, 0.1) 0%, transparent 45%),
+                    radial-gradient(circle at 85% 45%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+                    #050505;
+        background-attachment: fixed;
+        color: var(--text-color);
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Plus Jakarta Sans", sans-serif;
+        line-height: 1.6;
+        padding: 2rem 1rem;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .header {
+        margin-bottom: 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .btn-back {
+        color: var(--accent-color);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .policy-card {
+        background: rgba(14, 14, 18, 0.65);
+        backdrop-filter: blur(28px) saturate(180%);
+        -webkit-backdrop-filter: blur(28px) saturate(180%);
+        border: 1px solid var(--border-color);
+        border-radius: 24px;
+        padding: 2.5rem;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      h1 { font-size: 2rem; margin-bottom: 0.5rem; font-family: "Space Grotesk", sans-serif; }
+      .meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 2rem; }
+      
+      h2 { font-size: 1.25rem; color: var(--accent-color); margin: 1.75rem 0 0.75rem 0; }
+      p, li { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+      table { width: 100%; border-collapse: collapse; margin: 1rem 0; color: var(--text-muted); font-size: 0.85rem; }
+      th, td { padding: 0.75rem; border: 1px solid var(--border-color); text-align: left; }
+      th { color: #fff; background: rgba(255, 255, 255, 0.04); }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <a href="/" class="logo">RISHI SAHA</a>
+        <a href="/" class="btn-back">&larr; Return to Home</a>
+      </div>
+
+      <div class="policy-card">
+        <h1>Cookie & Local Storage Policy</h1>
+        <div class="meta">Last Updated: September 2, 2026</div>
+
+        <p>This Cookie Policy explains how our website uses cookies and browser local storage (`localStorage`) to deliver an optimal, personalized experience.</p>
+
+        <h2>1. Essential Functional Local Storage</h2>
+        <p>We do not track you across third-party websites or sell user profiling data. Our site relies on lightweight browser storage for the following essential features:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Key Name</th>
+              <th>Type</th>
+              <th>Purpose & Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>portfolio_theme</code></td>
+              <td>localStorage</td>
+              <td>Remembers your preference for Dark or Light theme mode (Persistent).</td>
+            </tr>
+            <tr>
+              <td><code>portfolio_country</code></td>
+              <td>localStorage</td>
+              <td>Stores selected country and regional currency (Persistent).</td>
+            </tr>
+            <tr>
+              <td><code>portfolio_form_rate_limit</code></td>
+              <td>localStorage</td>
+              <td>Tracks contact form submission timestamps to prevent bot abuse (5 min window).</td>
+            </tr>
+            <tr>
+              <td><code>portfolio_cookie_consent</code></td>
+              <td>localStorage</td>
+              <td>Stores your cookie consent preference choice (Persistent).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>2. Managing Your Preferences</h2>
+        <p>You can clear or disable browser local storage and cookies at any time in your browser settings. Essential local storage key deletion will reset visual themes to default dark mode.</p>
+      </div>
+    </div>
+  </body>
+</html>
