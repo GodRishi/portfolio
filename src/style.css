@@ -122,15 +122,17 @@ textarea {
   pointer-events: auto; /* Re-enable interaction on actual UI elements */
 }
 
-/* Custom Cursor (Optional premium touch) */
+/* Custom Cursor (Optional premium touch — GPU Hardware Accelerated) */
 #custom-cursor {
   width: 20px;
   height: 20px;
   border: 2px solid var(--accent-color);
   position: fixed;
+  top: 0;
+  left: 0;
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%);
+  will-change: transform;
   transition: width 0.2s, height 0.2s, background-color 0.2s;
   mix-blend-mode: difference;
   display: none; /* Only activated on desktop via JS */
@@ -639,7 +641,7 @@ html.light .btn-secondary {
   font-size: 2.5rem;
   font-weight: 800;
   color: var(--accent-color);
-  opacity: 0.25;
+  opacity: 0.85; /* WCAG AA High Contrast ratio for 100% accessibility score */
   line-height: 1;
   position: absolute;
   top: 0.75rem;
@@ -1305,7 +1307,7 @@ html.light .window-address {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
+  left: 0;
   width: 60%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
@@ -1315,7 +1317,8 @@ html.light .window-address {
 }
 
 @keyframes shimmer {
-  100% { left: 150%; }
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
 }
 
 /* --- Proof of Skill Live Audit Widget --- */
