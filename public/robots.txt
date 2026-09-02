@@ -5,6 +5,7 @@ Allow: /index.html
 Allow: /privacy-policy.html
 Allow: /terms-of-service.html
 Allow: /cookie-policy.html
+Allow: /llms.txt
 
 # Block staging, admin, and private API endpoints
 Disallow: /admin/

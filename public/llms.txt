@@ -1,0 +1,19 @@
+# Rishi Saha — Professional Web Developer
+
+> High-performance web development, custom landing pages, and web application engineering for brands and businesses.
+
+## Core Capabilities
+- Custom Web Development (React 19, Vite 8, Vanilla JS, Node.js)
+- 100/100 Lighthouse Performance & Accessibility Engineering
+- Apple Glass & Responsive Mobile/Tablet UI Architecture
+- E-Commerce Platforms, Restaurants, and Real Estate Sites
+
+## Portfolio Projects
+- Crunch 3D Crisps: https://3d-chips.vercel.app
+- Digital Dream Creation: https://digitaldreamcreation.vercel.app/
+- Palms Kitchen & Bar: https://palms-kitchen-and-bar.vercel.app
+- Mehta Urban Developers: https://demowebsite001.vercel.app/
+
+## Direct Contact & Inquiries
+- Email: saharishi409@gmail.com
+- Website: https://rishisaha.dev
