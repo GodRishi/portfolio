@@ -1697,3 +1697,150 @@ html.light .code-box-header { color: #334155; }
     backdrop-filter: blur(28px) saturate(180%) !important;
   }
 }
+
+/* --- Toast Notification System --- */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  min-width: 280px;
+  max-width: 400px;
+  padding: 0.85rem 1.25rem;
+  border-radius: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(18, 18, 22, 0.92);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast.toast-success { border-left: 4px solid var(--accent-color); }
+.toast.toast-error { border-left: 4px solid #ff0055; }
+.toast.toast-info { border-left: 4px solid #00f0ff; }
+
+/* --- Floating Apple Glass Cookie Consent Banner (PC Desktop) --- */
+.cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 99998;
+  max-width: 420px;
+  width: calc(100% - 48px);
+  background: rgba(14, 14, 18, 0.85);
+  backdrop-filter: blur(30px) saturate(190%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  padding: 1.25rem 1.35rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+html.light .cookie-banner {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.cookie-banner.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px) scale(0.95);
+  display: none !important;
+}
+
+.cookie-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cookie-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.cookie-title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.cookie-title-group strong {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cookie-subtitle {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.cookie-body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.cookie-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cookie-link:hover {
+  text-decoration: underline;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 0.6rem;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.cookie-actions .btn-sm {
+  flex: 1;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  padding: 0.6rem 0.85rem !important;
+  border-radius: 9999px !important; /* SF Pill Button */
+  text-align: center;
+  justify-content: center;
+  min-height: 38px;
+}

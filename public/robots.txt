@@ -1,0 +1,15 @@
+# Robots.txt for Rishi Saha Portfolio (https://rishisaha.dev)
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /privacy-policy.html
+Allow: /terms-of-service.html
+Allow: /cookie-policy.html
+
+# Block staging, admin, and private API endpoints
+Disallow: /admin/
+Disallow: /staging/
+Disallow: /api/private/
+Disallow: /*.json$
+
+Sitemap: https://rishisaha.dev/sitemap.xml

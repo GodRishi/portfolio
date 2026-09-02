@@ -1,10 +1,84 @@
 import './style.css';
 import './mobile.css';
 import { CodeCanvasManager } from './bg-canvas.js';
+import { defaultEmailService } from './email-service.js';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// ─── Toast UI Notification Engine ──────────────────────────────────────────────
+function showToast(message, type = 'info') {
+  const container = document.getElementById('toast-container');
+  if (!container) return;
+
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  
+  const iconMap = { success: '✓', error: '⚠️', info: 'ℹ️' };
+  toast.innerHTML = `<span>${iconMap[type] || 'ℹ️'}</span> <span>${message}</span>`;
+  
+  container.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add('show'));
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 4000);
+}
+
+// ─── Client-Side Rate Limiter (Max 3 submissions / 5 min) ─────────────────────
+function checkRateLimit() {
+  const RATE_LIMIT_KEY = 'portfolio_form_rate_limit';
+  const MAX_LIMIT = 3;
+  const WINDOW_MS = 5 * 60 * 1000; // 5 minutes
+
+  const now = Date.now();
+  let timestamps = JSON.parse(localStorage.getItem(RATE_LIMIT_KEY) || '[]');
+  
+  // Purge expired timestamps older than 5 minutes
+  timestamps = timestamps.filter(ts => now - ts < WINDOW_MS);
+
+  if (timestamps.length >= MAX_LIMIT) {
+    const oldest = timestamps[0];
+    const waitSeconds = Math.ceil((WINDOW_MS - (now - oldest)) / 1000);
+    throw new Error(`Rate limit reached (max 3 submissions / 5 min). Please wait ${waitSeconds} seconds.`);
+  }
+
+  return {
+    recordSubmission() {
+      timestamps.push(Date.now());
+      localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(timestamps));
+    }
+  };
+}
+
+// ─── Cookie Consent Banner Handlers ───────────────────────────────────────────
+function initCookieConsent() {
+  const CONSENT_KEY = 'portfolio_cookie_consent';
+  const banner = document.getElementById('cookie-consent-banner');
+  const acceptBtn = document.getElementById('accept-cookies-btn');
+  const essentialBtn = document.getElementById('essential-cookies-btn');
+
+  if (!banner || !acceptBtn || !essentialBtn) return;
+
+  const existingConsent = localStorage.getItem(CONSENT_KEY);
+  if (!existingConsent) {
+    banner.classList.remove('hidden');
+  }
+
+  acceptBtn.addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'all');
+    banner.classList.add('hidden');
+    showToast('Cookie preferences saved: All cookies accepted.', 'success');
+  });
+
+  essentialBtn.addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'essential');
+    banner.classList.add('hidden');
+    showToast('Cookie preferences saved: Essential local storage only.', 'info');
+  });
+}
 
 // ─── Currency & Pricing Config ────────────────────────────────────────────────
 // Prices are fair real-life value equivalents.
@@ -130,6 +204,9 @@ function initCountrySelector() {
 
 // ─── Main Init ────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+
+  // 0. Cookie Consent Init
+  initCookieConsent();
 
   // 1. Interactive Python Codestream Background
   const canvasManager = new CodeCanvasManager('webgl-canvas');
@@ -319,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 9. Lead Form — FormSubmit.co Submission
+  // 9. Lead Form — EmailService Submission & Rate Limiter
   const leadForm      = document.getElementById('lead-pipeline-form');
   const formOverlay   = document.getElementById('form-success-overlay');
   const closeOverlay  = document.getElementById('reset-form-btn');
@@ -330,34 +407,28 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
 
       const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'TRANSMITTING...';
-      submitBtn.disabled = true;
 
-      const formData = new FormData(leadForm);
-      const payload  = Object.fromEntries(formData.entries());
       try {
-        const res  = await fetch('https://formsubmit.co/ajax/saharishi409@gmail.com', {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(payload),
-        });
-        const json = await res.json();
+        // Enforce 3 submissions per 5 minute sliding window
+        const rateLimiter = checkRateLimit();
 
-        if (res.ok && (json.success === 'true' || json.success === true)) {
-          if (formOverlay) formOverlay.classList.remove('hidden');
-          leadForm.reset();
-        } else {
-          throw new Error(json.message || 'API rejected submission');
-        }
+        submitBtn.textContent = 'TRANSMITTING...';
+        submitBtn.disabled = true;
+
+        const formData = new FormData(leadForm);
+        const result = await defaultEmailService.sendLead(formData);
+
+        rateLimiter.recordSubmission();
+
+        showToast('Message sent successfully!', 'success');
+        if (formOverlay) formOverlay.classList.remove('hidden');
+        leadForm.reset();
       } catch (error) {
-        console.error('Email pipeline failed:', error);
-        alert('Could not send message. Please email directly to saharishi409@gmail.com');
+        console.error('Email pipeline error:', error);
+        showToast(error.message || 'Failed to send message.', 'error');
       } finally {
         submitBtn.textContent = originalText;
-        submitBtn.disabled    = false;
+        submitBtn.disabled = false;
       }
     });
   }
