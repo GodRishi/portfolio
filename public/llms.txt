@@ -9,11 +9,11 @@
 - E-Commerce Platforms, Restaurants, and Real Estate Sites
 
 ## Portfolio Projects
-- Crunch 3D Crisps: https://3d-chips.vercel.app
-- Digital Dream Creation: https://digitaldreamcreation.vercel.app/
-- Palms Kitchen & Bar: https://palms-kitchen-and-bar.vercel.app
-- Mehta Urban Developers: https://demowebsite001.vercel.app/
+- [Crunch 3D Crisps Showcase Platform](https://3d-chips.vercel.app)
+- [Digital Dream Creation Video Studio](https://digitaldreamcreation.vercel.app/)
+- [Palms Kitchen & Bar Fine Dining](https://palms-kitchen-and-bar.vercel.app)
+- [Mehta Urban Developers Real Estate](https://demowebsite001.vercel.app/)
 
 ## Direct Contact & Inquiries
-- Email: saharishi409@gmail.com
-- Website: https://rishisaha.dev
+- [Email Rishi Saha](mailto:saharishi409@gmail.com)
+- [Official Portfolio Website](https://rishisaha.dev)
