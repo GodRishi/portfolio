@@ -8,9 +8,10 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
-    target: 'es2015',
+    sourcemap: false,
     cssTarget: 'safari12',
+    cssCodeSplit: true,
+    assetsInlineLimit: 4096,
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
@@ -19,6 +20,15 @@ export default defineConfig({
         privacy: resolve(__dirname, 'privacy-policy.html'),
         terms: resolve(__dirname, 'terms-of-service.html'),
         cookie: resolve(__dirname, 'cookie-policy.html')
+      },
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('gsap')) return 'vendor-gsap';
+            if (id.includes('three')) return 'vendor-three';
+            return 'vendor';
+          }
+        }
       }
     }
   }

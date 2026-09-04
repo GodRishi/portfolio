@@ -1,6 +1,7 @@
 import './style.css';
 import './mobile.css';
-import { CodeCanvasManager } from './bg-canvas.js';
+import { Hero3DManager } from './hero-3d.js';
+import { initHelloAnimation } from './hello-animation.js';
 import { defaultEmailService } from './email-service.js';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -205,11 +206,14 @@ function initCountrySelector() {
 // ─── Main Init ────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 0. Cookie Consent Init
+  // 0. Apple-Style Hello Intro Preloader (First Visit Only)
+  initHelloAnimation();
+
+  // 1. Cookie Consent Init
   initCookieConsent();
 
-  // 1. Interactive Python Codestream Background
-  const canvasManager = new CodeCanvasManager('webgl-canvas');
+  // 1. Interactive 3D Wireframe Crystal Core Hero Component
+  const hero3DManager = new Hero3DManager('hero-3d-container');
 
   // 2. Country / Currency Selector
   initCountrySelector();
@@ -220,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggle.addEventListener('click', () => {
       const isLight = document.documentElement.classList.toggle('light');
       document.documentElement.classList.toggle('dark', !isLight);
-      if (canvasManager) canvasManager.updateTheme(isLight);
+      if (hero3DManager) hero3DManager.updateTheme(isLight);
     });
   }
 
@@ -349,33 +353,21 @@ document.addEventListener('DOMContentLoaded', () => {
   setupModal('open-palms-kitchen-case-study', 'palms-kitchen-case-study-modal', 'close-palms-kitchen-modal-btn', 'close-palms-kitchen-modal-bottom-btn');
   setupModal('open-mehta-case-study', 'case-study-modal', 'close-modal-btn', 'close-modal-bottom-btn');
 
-  // 7. Canvas Controls — Pause / Scramble
-  const pauseBtn    = document.getElementById('pause-stream-btn');
-  const scrambleBtn = document.getElementById('scramble-code-btn');
-
-  if (pauseBtn) {
-    pauseBtn.addEventListener('click', () => {
-      if (canvasManager) {
-        canvasManager.togglePause();
-        pauseBtn.textContent = canvasManager.isPaused ? 'RESUME ENGINE' : 'PAUSE ENGINE';
-      }
-    });
-  }
-
-  if (scrambleBtn) {
-    scrambleBtn.addEventListener('click', () => {
-      if (canvasManager) canvasManager.scrambleCode();
-    });
-  }
-
-  // 8. Custom Cursor (desktop only)
+  // 8. Custom Cursor (desktop only — GPU Hardware Accelerated)
   const cursor = document.getElementById('custom-cursor');
   if (cursor) {
     if (window.innerWidth > 1024) {
+      let cursorTicking = false;
       window.addEventListener('mousemove', (e) => {
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top  = `${e.clientY}px`;
-      });
+        if (!cursorTicking) {
+          requestAnimationFrame(() => {
+            cursor.style.transform = `translate3d(${e.clientX - 10}px, ${e.clientY - 10}px, 0)`;
+            cursorTicking = false;
+          });
+          cursorTicking = true;
+        }
+      }, { passive: true });
+
       const clickables = document.querySelectorAll(
         'a, button, input, select, textarea, .portfolio-item-card, .testimonial-card, .step-item'
       );
@@ -384,12 +376,12 @@ document.addEventListener('DOMContentLoaded', () => {
           cursor.style.width           = '35px';
           cursor.style.height          = '35px';
           cursor.style.backgroundColor = 'var(--glow-color)';
-        });
+        }, { passive: true });
         item.addEventListener('mouseleave', () => {
           cursor.style.width           = '20px';
           cursor.style.height          = '20px';
           cursor.style.backgroundColor = 'transparent';
-        });
+        }, { passive: true });
       });
     } else {
       cursor.style.display = 'none';
@@ -437,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeOverlay.addEventListener('click', () => formOverlay.classList.add('hidden'));
   }
 
-  // 10. Real Empirical Performance Metrics (Item #5)
+  // 10. Real Empirical Performance Metrics (Item #5 — Throttled)
   const pingEl   = document.getElementById('ping-metric');
   const nodesEl  = document.getElementById('nodes-metric');
   const coordsEl = document.getElementById('coords-metric');
@@ -451,9 +443,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (coordsEl) {
+    let coordsTicking = false;
     window.addEventListener('mousemove', (e) => {
-      coordsEl.textContent = `${(e.clientX / window.innerWidth).toFixed(3)}, ${(e.clientY / window.innerHeight).toFixed(3)}`;
-    });
+      if (!coordsTicking) {
+        requestAnimationFrame(() => {
+          coordsEl.textContent = `${(e.clientX / window.innerWidth).toFixed(3)}, ${(e.clientY / window.innerHeight).toFixed(3)}`;
+          coordsTicking = false;
+        });
+        coordsTicking = true;
+      }
+    }, { passive: true });
   }
 
   // 11. Staggered GSAP Scroll-Reveal Animations (Item #4)
@@ -484,30 +483,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 12. Mobile Bottom Dock Active Tab Observer
+  // 12. Mobile Bottom Dock Active Tab Observer (Zero Layout Thrashing with IntersectionObserver)
   const dockTabs = document.querySelectorAll('.mobile-dock-tab');
-  if (dockTabs.length > 0) {
-    const sections = [
-      document.getElementById('hero-section'),
-      document.getElementById('portfolio-section'),
-      document.getElementById('how-it-works'),
-      document.getElementById('contact-section')
-    ];
+  if (dockTabs.length > 0 && 'IntersectionObserver' in window) {
+    const sectionIds = ['hero-section', 'portfolio-section', 'how-it-works', 'contact-section'];
+    const sectionElements = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
-    window.addEventListener('scroll', () => {
-      const scrollPos = window.scrollY + 200;
-      sections.forEach((sec, idx) => {
-        if (!sec) return;
-        const top = sec.offsetTop;
-        const height = sec.offsetHeight;
-        if (scrollPos >= top && scrollPos < top + height) {
-          dockTabs.forEach(tab => tab.classList.remove('active'));
-          if (dockTabs[idx] && !dockTabs[idx].classList.contains('mobile-dock-cta')) {
-            dockTabs[idx].classList.add('active');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = sectionElements.indexOf(entry.target);
+          if (idx !== -1) {
+            dockTabs.forEach(tab => tab.classList.remove('active'));
+            if (dockTabs[idx] && !dockTabs[idx].classList.contains('mobile-dock-cta')) {
+              dockTabs[idx].classList.add('active');
+            }
           }
         }
       });
-    }, { passive: true });
+    }, { threshold: 0.2 });
+
+    sectionElements.forEach(sec => observer.observe(sec));
   }
 
   // Refresh after one frame so ScrollTrigger detects elements already on screen

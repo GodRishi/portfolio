@@ -190,6 +190,28 @@
     color: var(--bg-color) !important;
   }
 
+  /* --- Hero 3D Container Mobile Scaling --- */
+  .hero-card > .hero-3d-container {
+    position: absolute !important;
+    top: 5% !important;
+    right: -10% !important;
+    width: 80% !important;
+    height: 90% !important;
+    opacity: 0.65 !important;
+    z-index: 1 !important;
+    pointer-events: auto !important;
+    touch-action: pan-y !important;
+  }
+
+  .hero-3d-hud {
+    top: 10px !important;
+    right: 10px !important;
+    padding: 0.4rem 0.6rem !important;
+    border-radius: 12px !important;
+    scale: 0.88 !important;
+    transform-origin: top right !important;
+  }
+
   /* --- Apple Compact Typography Scaling --- */
   .hero-title {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif !important;
